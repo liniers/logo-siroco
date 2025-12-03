@@ -10,7 +10,7 @@ tl.from(isotipo, {
   opacity: 0,
   duration: 1,
   scale: 0.5,
-  rotation: 90,
+  rotation: -90,
   transformOrigin: "center center",
   ease: "circ.out",
 });
