@@ -29,42 +29,50 @@ tl.from(siroco, {
   ease: "circ.out",
 }, "-=0.9");
 
-// Mobile Animation
-let isotipoMb = document.getElementById("isotipo-mb");
-let grupoMb = document.getElementById("grupo-mb");
-let sirocoMb = document.getElementById("siroco-mb");
+// Reproducir animación mobile al hacer click en el SVG
+const svg = document.getElementById("logo");
+svg.style.cursor = 'pointer';
 
+let playMb = false;
 
+svg.addEventListener('click', () => {
+  if (!playMb) {
+    playMb = true;
+    
+    const tlMobile = gsap.timeline();
 
-const tlMobile = gsap.timeline();
+    tlMobile.fromTo(isotipo, {
+      rotation: 0,
+      transformOrigin: "center center",
+    }, {
+      delay: 0.5,
+      translateX: -100,
+      ease: "back.inOut(1.7)",
+      rotation: -360,
+      duration: 2,
+    });
 
-tlMobile.fromTo(isotipoMb, {
-  rotation: 180,
-  transformOrigin: "center center",
-}, {
-  delay: 0.5,
-  translateX: -100,
-  ease: "back.inOut(1.7)",
-  rotation: 0,
-  duration: 1,
+    tlMobile.fromTo(grupo, {
+      opacity: 1,
+      x: 0,
+    }, {
+      opacity: 0,
+      duration: 1.8,
+      x: -12,
+      ease: "back.inOut(4)",
+    }, "-=2.05");
+
+    tlMobile.fromTo(siroco, {
+      opacity: 1,
+      x: 0,
+    }, {
+      opacity: 0,
+      duration: 1.8,
+      x: -12,
+      ease: "back.inOut(4)",
+      onComplete: () => {
+        playMb = false;
+      }
+    }, "-=2");
+  }
 });
-
-tlMobile.fromTo(grupoMb, {
-  opacity: 1,
-  x: 0,
-}, {
-  opacity: 0,
-  duration: .8,
-  x: -12,
-  ease: "back.inOut(4)",
-}, "-=1.05");
-
-tlMobile.fromTo(sirocoMb, {
-  opacity: 1,
-  x: 0,
-}, {
-  opacity: 0,
-  duration: .8,
-  x: -12,
-  ease: "back.inOut(4)",
-}, "-=1");
