@@ -29,7 +29,7 @@ tl.from(siroco, {
   ease: "circ.out",
 }, "-=0.9");
 
-// Reproducir animación mobile al hacer click en el SVG
+// Mobile Animation
 const svg = document.getElementById("logo");
 svg.style.cursor = 'pointer';
 
